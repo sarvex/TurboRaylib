@@ -318,28 +318,28 @@ import os
 
 def make_lazarus_project(params, index):
 	extra_libs = []
-	
+
 	if isinstance(params, str):
 		dir = params
 	else:
 		dir = params[0]
 		extra_libs = params[1]
-	
+
 	project_name = os.path.split(os.path.normpath(dir))[-1]
 
 	print(f'work with: "{project_name}"')
-	
+
 	# lpi
-	with open(os.path.join(dir, project_name + '.lpi'), 'w') as file:
+	with open(os.path.join(dir, f'{project_name}.lpi'), 'w') as file:
 		file.write(make_lpi_file(project_name, 'libraylib.dylib', 'libraylib.so', extra_libs))
 	# lpr
-	with open(os.path.join(dir, project_name + '.lpr'), 'w') as file:
+	with open(os.path.join(dir, f'{project_name}.lpr'), 'w') as file:
 		file.write(make_lpr_file(project_name, extra_libs))
 	# dproj
-	with open(os.path.join(dir, project_name + '.dproj'), 'w') as file:
+	with open(os.path.join(dir, f'{project_name}.dproj'), 'w') as file:
 		file.write(make_dproj_file(project_name, index, extra_libs))
 	# dpr
-	with open(os.path.join(dir, project_name + '.dpr'), 'w') as file:
+	with open(os.path.join(dir, f'{project_name}.dpr'), 'w') as file:
 		file.write(make_dpr_file(project_name, extra_libs))
 
 
